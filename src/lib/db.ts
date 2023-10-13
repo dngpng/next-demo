@@ -11,7 +11,7 @@ export type Foo = {
   price: string;
 };
 
-let fooData: Foo[] = [];
+const fooData: Foo[] = [];
 
 function initFoo() {
   for (let i = 0; i < 20; i++) {
