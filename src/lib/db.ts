@@ -8,7 +8,7 @@ export type Foo = {
   createdBy: string;
   product: string;
   company: string;
-  price: string;
+  price: number;
 };
 
 const fooData: Foo[] = [];
@@ -22,16 +22,55 @@ function initFoo() {
       createdAt: faker.date.past(),
       updatedAt: faker.date.recent(),
       createdBy: faker.person.firstName(),
-      price: faker.commerce.price(),
+      price: faker.number.float({ min: 100, max: 1000, precision: 0.01 }),
     });
   }
 }
 
-export async function getFooList() {
+export async function getFooList({
+  search = "",
+  pageIndex = 0,
+  pageSize = 10,
+  sort = { id: "createdAt", desc: true },
+}: {
+  search?: string;
+  pageIndex?: number;
+  pageSize?: number;
+  sort?: { id: string; desc: boolean };
+}) {
   if (fooData.length === 0) {
     initFoo();
   }
-  return await Promise.resolve(fooData);
+
+  const filteredData = search
+    ? fooData.filter(
+        (f) =>
+          f.product.toLowerCase().includes(search.toLowerCase()) ||
+          f.company.toLowerCase().includes(search.toLowerCase())
+      )
+    : fooData;
+
+  const sortedData = sort
+    ? filteredData.sort((a, b) => {
+        const f = sort.id as keyof Foo;
+        if (!sort.desc) {
+          return a[f] > b[f] ? 1 : -1;
+        } else {
+          return a[f] < b[f] ? 1 : -1;
+        }
+      })
+    : filteredData;
+
+  const totalPages = Math.ceil(sortedData.length / pageSize);
+
+  const pagedData = sortedData.slice(
+    pageIndex * pageSize,
+    (pageIndex + 1) * pageSize
+  );
+
+  return await new Promise<{ data: Foo[]; totalPages: number }>((resolve) =>
+    setTimeout(() => resolve({ data: pagedData, totalPages }), 300)
+  );
 }
 
 export async function updateFoo(foo: Foo) {

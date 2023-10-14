@@ -6,8 +6,8 @@ export default function DemoLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="flex gap-8 max-w-7xl min-h-screen flex-col items-center justify-between p-12">
-      <nav className="flex border-b border-secondary w-full">
+    <main className="flex gap-4 max-w-7xl mx-auto min-h-screen flex-col items-center justify-between p-12">
+      <nav className="flex border-b-2 border-secondary w-full">
         <NavLink href="/foo">Foo</NavLink>
         <NavLink href="/bar">Bar</NavLink>
       </nav>

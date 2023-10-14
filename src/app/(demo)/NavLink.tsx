@@ -17,10 +17,8 @@ export default function NavLink({
     <Link
       href={href}
       className={cn(
-        "px-8 py-3 block border-b-2",
-        path.startsWith(href)
-          ? "border-accent-foreground"
-          : "border-transparent"
+        "px-8 py-3 block border-b-2 -mb-0.5",
+        path.startsWith(href) ? "border-primary" : "border-transparent"
       )}
     >
       {children}
