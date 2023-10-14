@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import { Checkbox } from "@/components/ui/checkbox";
+import Link from "next/link";
 
 interface ColumnHeaderProps<TData, TValue>
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -163,8 +164,14 @@ export const columns: ColumnDef<Foo>[] = [
               Copy ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>View Product</DropdownMenuItem>
-            <DropdownMenuItem>View Company</DropdownMenuItem>
+            <Link
+              href={`/foo/product/${foo.id}`}
+              passHref
+              legacyBehavior
+              scroll={false}
+            >
+              <DropdownMenuItem>View Product</DropdownMenuItem>
+            </Link>
           </DropdownMenuContent>
         </DropdownMenu>
       );

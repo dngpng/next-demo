@@ -27,6 +27,14 @@ function initFoo() {
   }
 }
 
+export async function getFoo(id: string) {
+  const foo = fooData.find((f) => f.id === id);
+  if (!foo) {
+    return Promise.resolve(null);
+  }
+  return await Promise.resolve(foo);
+}
+
 export async function getFooList({
   search = "",
   pageIndex = 0,

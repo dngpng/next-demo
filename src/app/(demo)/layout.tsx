@@ -11,7 +11,7 @@ export default function DemoLayout({
         <NavLink href="/foo">Foo</NavLink>
         <NavLink href="/bar">Bar</NavLink>
       </nav>
-      <div className="grow">{children}</div>
+      <div className="grow w-full">{children}</div>
     </main>
   );
 }
