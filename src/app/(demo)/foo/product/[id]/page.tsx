@@ -1,4 +1,11 @@
 import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { getFoo } from "@/lib/db";
 import Link from "next/link";
 import React from "react";
@@ -11,18 +18,19 @@ export default async function FooProductPage({
   const foo = await getFoo(params.id);
 
   return (
-    <div className="w-full">
-      <div>
-        <Link href="/foo/list" passHref legacyBehavior>
-          <Button variant={"outline"}>Back to List</Button>
-        </Link>
-      </div>
-      {!foo && (
-        <div className="py-12 text-center tracking-tight text-2xl font-bold text-foreground">
-          Product not found
+    <Card>
+      <CardHeader className="relative">
+        <CardTitle>{foo ? foo.product : "Product Not Found"}</CardTitle>
+        <CardDescription>{foo ? foo.description : ""}</CardDescription>
+        <div className="absolute right-4 top-4">
+          <Link href="/foo/list" passHref legacyBehavior>
+            <Button variant={"outline"}>Back to List</Button>
+          </Link>
         </div>
-      )}
-      {foo && <h1 className="text-lg text-foreground">{foo.product}</h1>}
-    </div>
+      </CardHeader>
+      <CardContent>
+        <div></div>
+      </CardContent>
+    </Card>
   );
 }

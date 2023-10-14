@@ -7,6 +7,7 @@ export type Foo = {
   updatedAt: Date;
   createdBy: string;
   product: string;
+  description: string;
   company: string;
   price: number;
 };
@@ -22,6 +23,7 @@ function initFoo() {
       createdAt: faker.date.past(),
       updatedAt: faker.date.recent(),
       createdBy: faker.person.firstName(),
+      description: faker.lorem.paragraph(),
       price: faker.number.float({ min: 100, max: 1000, precision: 0.01 }),
     });
   }
