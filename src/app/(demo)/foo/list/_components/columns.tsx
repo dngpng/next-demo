@@ -15,6 +15,7 @@ import {
 import { cn } from "@/lib/utils";
 import { Checkbox } from "@/components/ui/checkbox";
 import Link from "next/link";
+import { toast } from "sonner";
 
 interface ColumnHeaderProps<TData, TValue>
   extends React.HTMLAttributes<HTMLDivElement> {
@@ -159,7 +160,10 @@ export const columns: ColumnDef<Foo>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuItem
-              onClick={() => void navigator.clipboard.writeText(foo.id)}
+              onClick={() => {
+                void navigator.clipboard.writeText(foo.id);
+                toast.success("Copied ID to clipboard");
+              }}
             >
               Copy ID
             </DropdownMenuItem>
