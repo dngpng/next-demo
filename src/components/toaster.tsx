@@ -7,6 +7,9 @@ import React from "react";
 export default function Toaster() {
   const { theme } = useTheme();
   return (
-    <SonnerToaster theme={(theme as "light" | "dark" | "system") ?? "system"} />
+    <SonnerToaster
+      position="top-right"
+      theme={(theme as "light" | "dark" | "system") ?? "system"}
+    />
   );
 }

@@ -15,6 +15,11 @@ export default function Home() {
             Bar
           </Button>
         </Link>
+        <Link href="/hello-world" passHref legacyBehavior>
+          <Button size="lg" variant="outline">
+            Hello World
+          </Button>
+        </Link>
       </nav>
     </main>
   );
