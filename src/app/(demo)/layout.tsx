@@ -12,6 +12,7 @@ export default function DemoLayout({
         <div className="flex justify-between">
           <NavLink href="/foo">Foo</NavLink>
           <NavLink href="/bar">Bar</NavLink>
+          <NavLink href="/baz">Baz</NavLink>
         </div>
         <div>
           <ModeToggle />
